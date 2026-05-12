@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f4ec;
+  --foreground: #18230f;
+  --surface: #fffdf8;
+  --surface-strong: #f0ead6;
+  --border: #d6cfbf;
+  --primary: #1f4d3b;
+  --primary-foreground: #f6efe3;
+  --accent: #c97b2b;
+  --accent-foreground: #fff8ee;
+  --danger: #c2410c;
+  --muted: #6b7280;
+  --ring: rgba(31, 77, 59, 0.18);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-danger: var(--danger);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(201, 123, 43, 0.14), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(31, 77, 59, 0.12), transparent 32%),
+    var(--background);
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.card-shadow {
+  box-shadow: 0 18px 45px -28px rgba(24, 35, 15, 0.4);
+}
+
+.surface-grid {
+  background-image:
+    linear-gradient(rgba(24, 35, 15, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 35, 15, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+
+  .invoice-toolbar {
+    display: none !important;
+  }
+
+  .invoice-sheet {
+    box-shadow: none !important;
+    border-color: var(--border) !important;
+  }
+
+  .invoice-print-page {
+    min-height: auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+}
