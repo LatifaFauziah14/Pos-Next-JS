@@ -201,20 +201,14 @@ export class ProductService extends BaseService {
     }
 
     try {
-      await db.execute(sql`
+      const created = await db.execute(sql`
         INSERT INTO products (name, price, stock, category_id, branch_id)
         VALUES (${name}, ${priceNumber}, ${stock}, ${categoryId}, ${branchId})
-      `);
-
-      const created = await db.execute(sql`
-        SELECT id
-        FROM products
-        ORDER BY id DESC
-        LIMIT 1
+        RETURNING id
       `);
 
       const product = this.normalizeRows(created)[0];
-      return this.findProductById(product?.id);
+      return (await this.findProductById(product?.id)) || createFallbackProduct(fallbackPayload);
     } catch (error) {
       console.warn("Gagal menambahkan produk ke database, memakai data fallback.");
       return createFallbackProduct(fallbackPayload);
@@ -258,7 +252,6 @@ export class ProductService extends BaseService {
         UPDATE products
         SET stock = stock + ${additionalStock}
         WHERE id = ${id}
-        LIMIT 1
       `);
 
       return (await this.findProductById(id)) || restockFallbackProduct(id, additionalStock);
@@ -278,7 +271,6 @@ export class ProductService extends BaseService {
       await db.execute(sql`
         DELETE FROM products
         WHERE id = ${id}
-        LIMIT 1
       `);
 
       return { success: true };

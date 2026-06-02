@@ -162,7 +162,6 @@ export class UserService extends BaseService {
     await db.execute(sql`
       DELETE FROM users
       WHERE id = ${id}
-      LIMIT 1
     `);
 
     return { success: true };

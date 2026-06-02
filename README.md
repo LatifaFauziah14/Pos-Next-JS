@@ -1,6 +1,6 @@
 # POS Multi Cabang - Next.js 16
 
-Aplikasi Point of Sale modern berbasis Next.js 16 App Router, JavaScript, Tailwind CSS, Drizzle ORM, MySQL/MariaDB, dan reusable component architecture.
+Aplikasi Point of Sale modern berbasis Next.js 16 App Router, JavaScript, Tailwind CSS, Drizzle ORM, dan Supabase Postgres.
 
 ## Fitur
 
@@ -26,30 +26,18 @@ database/
 
 ```bash
 npm install
-cp .env.development.example .env.local
 npm run dev
 ```
 
 ## Environment
 
-Development:
-
-```bash
-cp .env.development.example .env.local
-```
-
-Production:
-
-```bash
-cp .env.production.example .env.production
-```
-
-Keduanya sudah diset menggunakan akun MySQL `root` tanpa password sesuai kebutuhan lokal:
+Pakai connection string Supabase Postgres di `DATABASE_URL`.
 
 ```env
-DATABASE_URL="mysql://root:@127.0.0.1:3306/pos_nextjs"
+DATABASE_URL="postgresql://postgres:[YOUR_PASSWORD]@db.[YOUR_PROJECT_REF].supabase.co:5432/postgres?sslmode=require"
+AUTH_SECRET="ganti_dengan_secret_yang_kuat"
 ```
 
 ## SQL Import
 
-Gunakan file `database/pos_mysql.sql` langsung di phpMyAdmin.
+Gunakan file `database/pos_supabase.sql` langsung di Supabase SQL Editor atau client PostgreSQL lain.

@@ -145,9 +145,14 @@ export class TransactionService extends BaseService {
           const inserted = await tx.execute(sql`
             INSERT INTO transactions (invoice_number, user_id, branch_id, total)
             VALUES (${invoiceNumber}, ${payload.userId}, ${payload.branchId}, ${total})
+            RETURNING id
           `);
 
-          const transactionId = inserted[0]?.insertId || inserted.insertId;
+          const transactionId = Number(this.normalizeRows(inserted)[0]?.id);
+
+          if (!transactionId) {
+            throw new Error("Gagal membuat transaksi.");
+          }
 
           for (const item of payload.items) {
             const price = Number(item.priceNumber || 0);

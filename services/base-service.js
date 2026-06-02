@@ -13,7 +13,7 @@ export class BaseService {
     if (!result) return [];
 
     if (Array.isArray(result)) {
-      // mysql2/drizzle can return [rows, fields], while some fallbacks return rows directly.
+      // Some drivers return rows directly, while others wrap them in arrays.
       if (Array.isArray(result[0])) return result[0];
       return result;
     }

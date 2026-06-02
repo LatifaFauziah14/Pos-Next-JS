@@ -70,7 +70,7 @@ export class DashboardService {
     if (db) {
       try {
         const result = await db.execute(sql`
-          SELECT DATE_FORMAT(MAX(created_at), '%Y-%m-%d') AS latestDate
+          SELECT TO_CHAR(MAX(created_at), 'YYYY-MM-DD') AS latestDate
           FROM transactions
         `);
         const latestDate = normalizeDateOnly(
@@ -169,7 +169,7 @@ export class DashboardService {
             COALESCE(SUM(t.total), 0) AS revenue
           FROM transactions t
           INNER JOIN branches b ON b.id = t.branch_id
-          WHERE DATE(t.created_at) BETWEEN ${range.start} AND ${range.end}
+          WHERE t.created_at::date BETWEEN ${range.start}::date AND ${range.end}::date
           GROUP BY t.branch_id, b.name, b.address
           ORDER BY revenue DESC, b.name ASC
         `);
