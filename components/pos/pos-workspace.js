@@ -82,29 +82,29 @@ export function PosWorkspace({ initialData }) {
   }
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-      <section className="rounded-[30px] border border-border bg-surface p-6 card-shadow">
-        <div className="mb-5 flex items-end justify-between gap-4">
-          <div>
-            <h3 className="text-xl font-semibold">Katalog Produk</h3>
+    <div className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+      <section className="rounded-[24px] border border-border bg-surface p-4 card-shadow sm:rounded-[30px] sm:p-6">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <h3 className="text-lg font-semibold sm:text-xl">Katalog Produk</h3>
             <p className="mt-1 text-sm text-muted">
               Pilih produk berdasarkan cabang aktif kasir.
             </p>
           </div>
           <p className="text-sm text-muted">
-            {initialData.branch.name} • {initialData.products.length} item
+            {initialData.branch.name} - {initialData.products.length} item
           </p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {initialData.products.map((product) => (
             <button
               key={product.id}
               type="button"
               onClick={() => addToCart(product)}
-              className="rounded-[24px] border border-border bg-white p-5 text-left transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
+              className="rounded-[24px] border border-border bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg sm:p-5"
             >
               <div className="flex items-start justify-between gap-3">
-                <div>
+                <div className="min-w-0">
                   <p className="font-semibold">{product.name}</p>
                   <p className="mt-1 text-sm text-muted">{product.categoryName}</p>
                 </div>
@@ -118,15 +118,20 @@ export function PosWorkspace({ initialData }) {
         </div>
       </section>
 
-      <section className="rounded-[30px] border border-border bg-surface p-6 card-shadow">
-        <div className="mb-5 flex items-end justify-between gap-4">
-          <div>
-            <h3 className="text-xl font-semibold">Keranjang Kasir</h3>
+      <section className="rounded-[24px] border border-border bg-surface p-4 card-shadow sm:rounded-[30px] sm:p-6">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <h3 className="text-lg font-semibold sm:text-xl">Keranjang Kasir</h3>
             <p className="mt-1 text-sm text-muted">
               Perubahan qty dihitung otomatis sebelum checkout.
             </p>
           </div>
-          <Button variant="secondary" onClick={() => setOpen(true)} disabled={!cart.length}>
+          <Button
+            variant="secondary"
+            onClick={() => setOpen(true)}
+            disabled={!cart.length}
+            className="w-full sm:w-auto"
+          >
             Preview
           </Button>
         </div>
@@ -149,12 +154,12 @@ export function PosWorkspace({ initialData }) {
                   key={item.productId}
                   className="rounded-[24px] border border-border bg-white p-4"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0">
                       <p className="font-semibold">{item.name}</p>
                       <p className="text-sm text-muted">{item.price}</p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-between gap-3 sm:justify-end">
                       <Button
                         variant="secondary"
                         size="sm"
@@ -248,7 +253,7 @@ export function PosWorkspace({ initialData }) {
               </p>
             ) : null}
 
-            <Button type="submit" size="lg" disabled={pending || !hasValidPayment}>
+            <Button type="submit" size="lg" className="w-full" disabled={pending || !hasValidPayment}>
               {pending ? "Menyimpan transaksi..." : "Checkout Sekarang"}
             </Button>
           </form>
@@ -265,9 +270,9 @@ export function PosWorkspace({ initialData }) {
           {visibleCart.map((item) => (
             <div
               key={item.productId}
-              className="flex items-center justify-between rounded-2xl border border-border px-4 py-3"
+              className="flex flex-col gap-3 rounded-2xl border border-border px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
             >
-              <div>
+              <div className="min-w-0">
                 <p className="font-semibold">{item.name}</p>
                 <p className="text-sm text-muted">
                   {item.qty} x {item.price}

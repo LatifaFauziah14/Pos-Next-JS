@@ -6,16 +6,21 @@ export function Modal({ open, title, description, children, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 p-4">
-      <div className="w-full max-w-lg rounded-[28px] border border-border bg-surface p-6 card-shadow">
-        <div className="mb-4 flex items-start justify-between gap-4">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/35 p-3 sm:items-center sm:p-4">
+      <div className="w-full max-w-lg max-h-[calc(100vh-1.5rem)] overflow-y-auto rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-6">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h3 className="text-xl font-semibold">{title}</h3>
+            <h3 className="text-lg font-semibold sm:text-xl">{title}</h3>
             {description ? (
               <p className="mt-1 text-sm leading-6 text-muted">{description}</p>
             ) : null}
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="self-end sm:self-start"
+          >
             Tutup
           </Button>
         </div>

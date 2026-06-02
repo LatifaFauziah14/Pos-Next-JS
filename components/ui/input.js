@@ -34,7 +34,7 @@ export const Input = forwardRef(function Input(
         ref={ref}
         id={id}
         className={clsx(
-          "h-12 rounded-2xl border border-border bg-white px-4 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]",
+          "h-12 w-full rounded-2xl border border-border bg-white px-4 text-base outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]",
           error && "border-danger focus:border-danger",
           className,
         )}

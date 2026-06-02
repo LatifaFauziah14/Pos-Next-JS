@@ -14,8 +14,8 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className="surface-grid flex min-h-screen items-center justify-center p-6">
-      <div className="grid w-full max-w-6xl overflow-hidden rounded-[32px] border border-border bg-surface card-shadow lg:grid-cols-[1.15fr_0.85fr]">
+    <main className="surface-grid flex min-h-screen items-center justify-center p-4 sm:p-6">
+      <div className="grid w-full max-w-6xl overflow-hidden rounded-[24px] border border-border bg-surface card-shadow sm:rounded-[32px] lg:grid-cols-[1.15fr_0.85fr]">
         <section className="relative hidden min-h-[620px] overflow-hidden bg-primary px-10 py-12 text-primary-foreground lg:flex lg:flex-col lg:justify-between">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.14),_transparent_38%),linear-gradient(135deg,_rgba(255,255,255,0.05),_transparent_60%)]" />
           <div className="relative space-y-5">
@@ -55,8 +55,8 @@ export default async function LoginPage() {
           </div>
         </section>
 
-        <section className="flex items-center justify-center p-6 sm:p-10">
-          <div className="w-full max-w-md space-y-8">
+        <section className="flex items-center justify-center p-4 sm:p-6">
+          <div className="w-full max-w-md space-y-6 sm:space-y-8">
             <div className="space-y-3">
               <span className="inline-flex rounded-full bg-primary/8 px-4 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
                 Secure Login

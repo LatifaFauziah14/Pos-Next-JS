@@ -21,7 +21,7 @@ function SelectField({ label, value, onChange, options, helperText }) {
     <label className="grid gap-2 text-sm font-medium text-foreground">
       <span>{label}</span>
       <select
-        className="h-12 rounded-2xl border border-border bg-white px-4 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]"
+        className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]"
         value={value}
         onChange={onChange}
       >
@@ -238,10 +238,11 @@ export function UserManagementSection({ initialUsers, roles, branches, session }
       header: "Aksi",
       enableSorting: false,
       cell: ({ row }) => (
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <Button
             size="sm"
             variant="secondary"
+            className="w-full sm:w-auto"
             onClick={() => openEditModal(row.original)}
           >
             <FontAwesomeIcon icon={faPencil} className="mr-2 text-sm" />
@@ -250,6 +251,7 @@ export function UserManagementSection({ initialUsers, roles, branches, session }
           <Button
             size="sm"
             variant="danger"
+            className="w-full sm:w-auto"
             onClick={() => handleDelete(row.original)}
             disabled={row.original.id === session.id}
           >
@@ -263,22 +265,22 @@ export function UserManagementSection({ initialUsers, roles, branches, session }
 
   return (
     <div className="grid gap-6">
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Total pengguna</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.all}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.all}</p>
         </div>
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Admin aktif</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.admins}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.admins}</p>
         </div>
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Kasir aktif</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.cashiers}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.cashiers}</p>
         </div>
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Cakupan cabang</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.branches}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.branches}</p>
         </div>
       </section>
 

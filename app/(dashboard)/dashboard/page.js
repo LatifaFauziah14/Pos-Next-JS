@@ -56,13 +56,13 @@ export default async function DashboardPage() {
             {stats.topProducts.map((product) => (
               <div
                 key={product.id}
-                className="flex items-center justify-between rounded-2xl border border-border bg-surface-strong/65 px-4 py-3"
+                className="flex flex-col gap-3 rounded-2xl border border-border bg-surface-strong/65 px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
               >
-                <div>
+                <div className="min-w-0">
                   <p className="font-semibold">{product.name}</p>
                   <p className="text-sm text-muted">{product.category}</p>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <p className="font-semibold">{product.sold} terjual</p>
                   <p className="text-sm text-muted">{product.branch}</p>
                 </div>
@@ -80,15 +80,15 @@ export default async function DashboardPage() {
             {stats.recentTransactions.map((transaction) => (
               <div
                 key={transaction.invoiceNumber}
-                className="flex items-center justify-between rounded-2xl border border-border px-4 py-3"
+                className="flex flex-col gap-3 rounded-2xl border border-border px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
               >
-                <div>
+                <div className="min-w-0">
                   <p className="font-semibold">{transaction.invoiceNumber}</p>
                   <p className="text-sm text-muted">
                     {transaction.cashier} - {transaction.branch}
                   </p>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <p className="font-semibold">{transaction.total}</p>
                   <p className="text-sm text-muted">{transaction.createdAt}</p>
                 </div>

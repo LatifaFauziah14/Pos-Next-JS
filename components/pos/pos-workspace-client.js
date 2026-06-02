@@ -7,8 +7,8 @@ const PosWorkspace = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="rounded-[30px] border border-border bg-surface p-6 card-shadow">
-        <div className="h-[520px] animate-pulse rounded-[24px] bg-surface-strong/70" />
+      <div className="rounded-[24px] border border-border bg-surface p-4 card-shadow sm:rounded-[30px] sm:p-6">
+        <div className="h-[420px] animate-pulse rounded-[24px] bg-surface-strong/70 sm:h-[520px]" />
       </div>
     ),
   },

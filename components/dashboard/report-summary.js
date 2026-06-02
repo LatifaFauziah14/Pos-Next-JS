@@ -6,12 +6,12 @@ export function ReportSummary({ data }) {
           key={item.branchId}
           className="rounded-[22px] border border-border bg-white px-4 py-4"
         >
-          <div className="flex items-center justify-between gap-4">
-            <div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <p className="font-semibold">{item.branchName}</p>
-              <p className="text-sm text-muted">{item.address}</p>
+              <p className="break-words text-sm leading-6 text-muted">{item.address}</p>
             </div>
-            <div className="text-right">
+            <div className="text-left sm:text-right">
               <p className="font-semibold">{item.revenue}</p>
               <p className="text-sm text-muted">{item.transactions} transaksi</p>
             </div>

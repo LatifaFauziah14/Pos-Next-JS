@@ -21,7 +21,7 @@ function SelectField({ label, value, onChange, options, helperText, error }) {
     <label className="grid gap-2 text-sm font-medium text-foreground">
       <span>{label}</span>
       <select
-        className={`h-12 rounded-2xl border bg-white px-4 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)] ${
+        className={`h-12 w-full rounded-2xl border bg-white px-4 text-base outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)] ${
           error ? "border-danger" : "border-border"
         }`}
         value={value}
@@ -277,12 +277,22 @@ export function ProductTableClient({ data, categories, branches, session }) {
       header: "Aksi",
       enableSorting: false,
       cell: ({ row }) => (
-          <div className="flex gap-2">
-          <Button size="sm" variant="secondary" onClick={() => openEditModal(row.original)}>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <Button
+            size="sm"
+            variant="secondary"
+            className="w-full sm:w-auto"
+            onClick={() => openEditModal(row.original)}
+          >
             <FontAwesomeIcon icon={faPencil} className="mr-2 text-sm" />
             Edit
           </Button>
-          <Button size="sm" variant="danger" onClick={() => handleDelete(row.original)}>
+          <Button
+            size="sm"
+            variant="danger"
+            className="w-full sm:w-auto"
+            onClick={() => handleDelete(row.original)}
+          >
             <FontAwesomeIcon icon={faTrashCan} className="mr-2 text-sm" />
             Hapus
           </Button>
@@ -293,22 +303,22 @@ export function ProductTableClient({ data, categories, branches, session }) {
 
   return (
     <div className="grid gap-6">
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Total produk</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.all}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.all}</p>
         </div>
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Kategori aktif</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.categories}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.categories}</p>
         </div>
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Cabang terdaftar</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.branches}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.branches}</p>
         </div>
-        <div className="rounded-[28px] border border-border bg-surface p-5 card-shadow">
+        <div className="rounded-[28px] border border-border bg-surface p-4 card-shadow sm:p-5">
           <p className="text-sm text-muted">Total stok</p>
-          <p className="mt-2 text-3xl font-semibold">{totals.stock}</p>
+          <p className="mt-2 text-2xl font-semibold sm:text-3xl">{totals.stock}</p>
         </div>
       </section>
 

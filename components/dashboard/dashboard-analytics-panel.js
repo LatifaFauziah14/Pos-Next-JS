@@ -47,7 +47,7 @@ function sumValues(items, key) {
 function AnalyticsSkeleton() {
   return (
     <div className="grid gap-4">
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Skeleton className="h-24" />
         <Skeleton className="h-24" />
         <Skeleton className="h-24" />
@@ -257,18 +257,18 @@ export function DashboardAnalyticsPanel({ initialRange, initialAnalytics }) {
   }
 
   return (
-    <section className="rounded-[30px] border border-border bg-surface p-6 card-shadow animate__animated animate__fadeInUp">
-      <div className="flex flex-col gap-4 border-b border-dashed border-border pb-5 lg:flex-row lg:items-end lg:justify-between">
+    <section className="rounded-[24px] border border-border bg-surface p-4 card-shadow animate__animated animate__fadeInUp sm:rounded-[30px] sm:p-6">
+      <div className="flex flex-col gap-4 border-b border-dashed border-border pb-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.28em] text-muted">Analitik Dashboard</p>
-          <h3 className="mt-2 text-2xl font-semibold">Grafik omzet dan stok rendah</h3>
+          <h3 className="mt-2 text-xl font-semibold sm:text-2xl">Grafik omzet dan stok rendah</h3>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
             Pilih rentang tanggal untuk melihat omzet per cabang. Stok rendah ditampilkan
             sebagai snapshot inventori saat ini.
           </p>
         </div>
 
-        <div className="grid gap-3 sm:min-w-[320px]">
+        <div className="grid w-full gap-3 sm:min-w-[320px] sm:max-w-[360px]">
           <label className="grid gap-2 text-sm font-medium text-foreground">
             <span className="inline-flex items-center gap-2 text-muted">
               <FontAwesomeIcon icon={faCalendarDays} className="text-sm" />
@@ -284,14 +284,14 @@ export function DashboardAnalyticsPanel({ initialRange, initialAnalytics }) {
                 allowInput: true,
                 defaultDate: [toDateObject(range.start), toDateObject(range.end)].filter(Boolean),
                 altInputClass:
-                  "h-12 w-full rounded-2xl border border-border bg-white px-4 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]",
+                  "h-12 w-full rounded-2xl border border-border bg-white px-4 text-base outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]",
               }}
               onChange={handleRangeChange}
-              className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]"
+              className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base outline-none transition focus:border-primary focus:ring-4 focus:ring-[var(--ring)]"
             />
           </label>
           <div className="flex flex-wrap items-center gap-2">
-            <Button variant="secondary" size="sm" onClick={resetRange}>
+            <Button variant="secondary" size="sm" className="w-full sm:w-auto" onClick={resetRange}>
               <FontAwesomeIcon icon={faRotate} className="mr-2 text-xs" />
               Reset
             </Button>
@@ -314,48 +314,48 @@ export function DashboardAnalyticsPanel({ initialRange, initialAnalytics }) {
         </div>
       ) : (
         <div className="mt-5 grid gap-5">
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <article className="rounded-[24px] border border-border bg-white p-5 animate__animated animate__fadeInUp">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <article className="rounded-[24px] border border-border bg-white p-4 animate__animated animate__fadeInUp sm:p-5">
               <p className="text-sm text-muted">Omzet terpilih</p>
-              <h4 className="mt-3 text-2xl font-semibold">{formatCurrency(revenueTotals.totalRevenue)}</h4>
+              <h4 className="mt-2 text-2xl font-semibold">{formatCurrency(revenueTotals.totalRevenue)}</h4>
               <p className="mt-2 text-sm text-muted">{revenueTotals.totalTransactions} transaksi</p>
             </article>
-            <article className="rounded-[24px] border border-border bg-white p-5 animate__animated animate__fadeInUp">
+            <article className="rounded-[24px] border border-border bg-white p-4 animate__animated animate__fadeInUp sm:p-5">
               <p className="text-sm text-muted">Cabang aktif di grafik</p>
-              <h4 className="mt-3 text-2xl font-semibold">{revenueTotals.branchCount}</h4>
+              <h4 className="mt-2 text-2xl font-semibold">{revenueTotals.branchCount}</h4>
               <p className="mt-2 text-sm text-muted">menyumbang omzet pada rentang ini</p>
             </article>
-            <article className="rounded-[24px] border border-border bg-white p-5 animate__animated animate__fadeInUp">
+            <article className="rounded-[24px] border border-border bg-white p-4 animate__animated animate__fadeInUp sm:p-5">
               <p className="text-sm text-muted">Stok rendah</p>
-              <h4 className="mt-3 text-2xl font-semibold">{lowStockTotals.totalLowStock}</h4>
+              <h4 className="mt-2 text-2xl font-semibold">{lowStockTotals.totalLowStock}</h4>
               <p className="mt-2 text-sm text-muted">produk perlu restock</p>
             </article>
-            <article className="rounded-[24px] border border-border bg-white p-5 animate__animated animate__fadeInUp">
+            <article className="rounded-[24px] border border-border bg-white p-4 animate__animated animate__fadeInUp sm:p-5">
               <p className="text-sm text-muted">Cabang dengan stok rendah</p>
-              <h4 className="mt-3 text-2xl font-semibold">{lowStockTotals.branchCount}</h4>
+              <h4 className="mt-2 text-2xl font-semibold">{lowStockTotals.branchCount}</h4>
               <p className="mt-2 text-sm text-muted">snapshot inventori saat ini</p>
             </article>
           </div>
 
           <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-            <article className="rounded-[28px] border border-border bg-white p-5">
+            <article className="rounded-[28px] border border-border bg-white p-4 sm:p-5">
               <div className="mb-4 flex items-start justify-between gap-4">
                 <div>
                   <h4 className="text-lg font-semibold">Omzet per Cabang</h4>
                   <p className="text-sm text-muted">Pendapatan pada rentang tanggal terpilih.</p>
                 </div>
               </div>
-              <div className="min-h-[340px]">
+              <div className="min-h-[260px] sm:min-h-[340px]">
                 <Bar data={revenueData} options={revenueOptions} />
               </div>
             </article>
 
-            <article className="rounded-[28px] border border-border bg-white p-5">
+            <article className="rounded-[28px] border border-border bg-white p-4 sm:p-5">
               <div className="mb-4">
                 <h4 className="text-lg font-semibold">Produk Stok Rendah per Cabang</h4>
                 <p className="text-sm text-muted">Jumlah produk dengan stok di bawah ambang batas.</p>
               </div>
-              <div className="min-h-[340px]">
+              <div className="min-h-[260px] sm:min-h-[340px]">
                 <Bar data={lowStockData} options={lowStockOptions} />
               </div>
             </article>
@@ -363,9 +363,12 @@ export function DashboardAnalyticsPanel({ initialRange, initialAnalytics }) {
 
           <div className="grid gap-3 xl:grid-cols-3">
             {(analytics?.lowStockByBranch || []).map((branch) => (
-              <article key={branch.branchId} className="rounded-[24px] border border-border bg-surface-strong/55 p-5">
+              <article
+                key={branch.branchId}
+                className="rounded-[24px] border border-border bg-surface-strong/55 p-4 sm:p-5"
+              >
                 <div className="flex items-start justify-between gap-3">
-                  <div>
+                  <div className="min-w-0">
                     <h5 className="font-semibold">{branch.branchName}</h5>
                     <p className="text-sm text-muted">{branch.address}</p>
                   </div>

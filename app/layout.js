@@ -22,13 +22,19 @@ export const metadata = {
   description: "Aplikasi Point of Sale modern berbasis Next.js 16",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-screen font-sans text-foreground antialiased">
+      <body className="min-h-screen overflow-x-hidden font-sans text-foreground antialiased">
         {children}
       </body>
     </html>

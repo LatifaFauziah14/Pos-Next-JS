@@ -42,7 +42,7 @@ export function LoginForm() {
             {state.message}
           </p>
         ) : null}
-        <Button type="submit" size="lg" disabled={pending}>
+        <Button type="submit" size="lg" className="w-full" disabled={pending}>
           {pending ? "Memproses..." : "Masuk Sekarang"}
         </Button>
       </form>
