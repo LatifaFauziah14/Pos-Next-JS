@@ -36,7 +36,16 @@ export async function createTransactionAction(_prevState, formData) {
   }
 
   const service = new TransactionService();
-  const result = await service.createTransaction(parsed.data);
+  let result;
+  try {
+    result = await service.createTransaction(parsed.data);
+  } catch (error) {
+    return {
+      success: false,
+      message: error?.message || "Gagal menyimpan transaksi.",
+      errors: {},
+    };
+  }
   const total = parsed.data.items.reduce(
     (sum, item) => sum + item.qty * Number(item.priceNumber || 0),
     0,

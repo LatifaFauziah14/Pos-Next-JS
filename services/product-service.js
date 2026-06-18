@@ -210,8 +210,9 @@ export class ProductService extends BaseService {
       const product = this.normalizeRows(created)[0];
       return (await this.findProductById(product?.id)) || createFallbackProduct(fallbackPayload);
     } catch (error) {
-      console.warn("Gagal menambahkan produk ke database, memakai data fallback.");
-      return createFallbackProduct(fallbackPayload);
+      console.error("Gagal menambahkan produk ke database:", error?.message || error);
+      // Jika DB tersedia, jangan jatuhkan ke fallback silently; biarkan caller menangani error.
+      throw error;
     }
   }
 
@@ -236,8 +237,8 @@ export class ProductService extends BaseService {
 
       return (await this.findProductById(id)) || updateFallbackProduct(id, fallbackPayload);
     } catch (error) {
-      console.warn("Gagal memperbarui produk di database, memakai data fallback.");
-      return updateFallbackProduct(id, fallbackPayload);
+      console.error("Gagal memperbarui produk di database:", error?.message || error);
+      throw error;
     }
   }
 
@@ -256,8 +257,8 @@ export class ProductService extends BaseService {
 
       return (await this.findProductById(id)) || restockFallbackProduct(id, additionalStock);
     } catch (error) {
-      console.warn("Gagal restok produk di database, memakai data fallback.");
-      return restockFallbackProduct(id, additionalStock);
+      console.error("Gagal restok produk di database:", error?.message || error);
+      throw error;
     }
   }
 
@@ -275,8 +276,8 @@ export class ProductService extends BaseService {
 
       return { success: true };
     } catch (error) {
-      console.warn("Gagal menghapus produk di database, memakai data fallback.");
-      return deleteFallbackProduct(id);
+      console.error("Gagal menghapus produk di database:", error?.message || error);
+      throw error;
     }
   }
 

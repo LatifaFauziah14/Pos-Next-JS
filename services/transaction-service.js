@@ -55,6 +55,15 @@ function createFallbackInvoice(invoiceNumber, payload, total) {
   };
 }
 
+function decreaseProductStock(items) {
+  for (const item of items) {
+    const product = mockProducts.find((entry) => entry.id === item.productId);
+    if (product) {
+      product.stock = Math.max(0, Number(product.stock || 0) - Number(item.qty || 0));
+    }
+  }
+}
+
 function getFallbackInvoiceByNumber(invoiceNumber) {
   const created = fallbackCreatedTransactions.find(
     (item) => item.invoiceNumber === invoiceNumber,
@@ -166,16 +175,18 @@ export class TransactionService extends BaseService {
             await tx.execute(sql`
               UPDATE products
               SET stock = stock - ${item.qty}
-              WHERE id = ${item.productId} AND branch_id = ${payload.branchId}
+              WHERE id = ${item.productId}
             `);
           }
         });
       } catch (error) {
-        console.warn("Gagal menyimpan transaksi ke database, memakai transaksi fallback.");
-        fallbackCreatedTransactions.unshift(createFallbackInvoice(invoiceNumber, payload, total));
+        console.error("Gagal menyimpan transaksi ke database:", error?.message || error);
+        // Jika DB tersedia, jangan jatuhkan ke fallback silently; biarkan caller menangani error.
+        throw error;
       }
     } else {
       fallbackCreatedTransactions.unshift(createFallbackInvoice(invoiceNumber, payload, total));
+      decreaseProductStock(payload.items);
     }
 
     return {
